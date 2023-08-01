@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Homepage extends StatelessWidget {
+class HomePage extends StatelessWidget {
   final int days = 30;
-   final String name = "Harsh";
-    /*double a = 3.14;
+  final String name = "Harsh";
+
+  const HomePage({super.key});
+
+  /*double a = 3.14;
     bool isMale = true;
     num b = 30.5;        //takes both int and double
     var b = "Tuesday";  //automatically understands that it's a string
@@ -12,17 +15,16 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
-        title: Text("First App"),
+        title: const Text("First App"),
       ),
-        body: Center(
-          child: Container(
-            child: Text("$days days of flutter by $name "),
-          ),
+      body: Center(
+        child: Container(
+          child: Text("$days days of flutter by $name "),
         ),
-       drawer: Drawer(),  
-      );
+      ),
+      drawer: Drawer(),
+    );
   }
 }
