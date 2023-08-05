@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   final int days = 30;
-  final String name = "Harsh";
+  final String name = "Stark";
 
   const HomePage({super.key});
 
@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          child: Text("$days days of flutter by $name "),
+          child: Text("$name's catalog app!! ",textScaleFactor: 2,),
         ),
       ),
       drawer: Drawer(),
