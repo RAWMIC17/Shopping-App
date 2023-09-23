@@ -10,6 +10,7 @@ class _LoginPageState extends State<LoginPage> {
   //'_' means private data members or classes
 
   String name = "";
+  //TextEditingController Vaibhav = TextEditingController();
   bool changeButton = false;
   final _formkey = GlobalKey<FormState>();
 
@@ -68,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                           if (value!.isEmpty) {
                             //conditioning the text field
                             return "Username can't be empty";
-                          } 
+                          }
                           return null; //else no problem
                         },
                         onChanged: (value) {
@@ -81,16 +82,18 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: InputDecoration(
                             hintText: "Enter Password", labelText: "Password"),
                         validator: (value) {
-                          if (value!.isEmpty) {//conditioning the text field
+                          if (value!.isEmpty) {
+                            //conditioning the text field
                             return "Password can't be empty";
-                          }
-                          else if (value.length < 6) {//password length validation
+                          } else if (value.length < 6) {
+                            //password length validation
                             return "Password length must be atleast 6 alphanumeric characters";
-                          }//This validation returns the user to home page
+                          } //This validation returns the user to home page
                           return null; //else no problem
                         },
                       ),
-                      SizedBox(//box for button
+                      SizedBox(
+                        //box for button
                         height: 20.0,
                       ),
                       Material(
@@ -100,10 +103,11 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius:
                             BorderRadius.circular(changeButton ? 50 : 8),
                         child: InkWell(
-                          onTap: () => moveToHome(context),//using the function made above
+                          onTap: () => moveToHome(
+                              context), //using the function made above
                           child: AnimatedContainer(
                             duration: Duration(
-                              seconds: 1,//wait time 1 seconds
+                              seconds: 1, //wait time 1 seconds
                             ),
                             width: changeButton ? 50 : 150,
                             height: 50,
