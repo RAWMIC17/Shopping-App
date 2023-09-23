@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/Login.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
+import 'package:flutter_application_1/utils/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -21,11 +22,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         fontFamily: GoogleFonts.lato().fontFamily,
         ),//Dark theme properties
-        initialRoute: "/home",//changes the default the route
+        debugShowCheckedModeBanner: false,//to remove debug banner
+        initialRoute: "/login",//changes the default the route
         routes: { //"/" is show on screen first by default
-          "/" : (context)=>  HomePage(),//generates error, home also points to homepage, have to remove one
-          "/home":(context)=> LoginPage(),
-          "/login":(context)=> LoginPage()
+          "/" : (context)=>  LoginPage(),//generates error, home also points to homepage, have to remove one
+          MyRoutes.homeRoute:(context)=> HomePage(),//route to homepage
+          MyRoutes.loginRoute:(context)=> LoginPage()//route to loginpage
         },
     );
   }
