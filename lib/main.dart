@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.lato().fontFamily,
         ),//Dark theme properties
         debugShowCheckedModeBanner: false,//to remove debug banner
-        initialRoute: "/login",//changes the default the route
+        initialRoute: MyRoutes.homeRoute,//changes the default the route
         routes: { //"/" is show on screen first by default
           "/" : (context)=>  LoginPage(),//generates error, home also points to homepage, have to remove one
           MyRoutes.homeRoute:(context)=> HomePage(),//route to homepage

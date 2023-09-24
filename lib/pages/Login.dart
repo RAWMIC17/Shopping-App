@@ -85,9 +85,9 @@ class _LoginPageState extends State<LoginPage> {
                           if (value!.isEmpty) {
                             //conditioning the text field
                             return "Password can't be empty";
-                          } else if (value.length < 6) {
+                          } else if (value.length < 8) {
                             //password length validation
-                            return "Password length must be atleast 6 alphanumeric characters";
+                            return "Password length must be atleast 8 alphanumeric characters";
                           } //This validation returns the user to home page
                           return null; //else no problem
                         },
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       )
-                      /*ElevatedButton(
+                      /*ElevatedButton(  // another alternative for a button 
                         onPressed: () {
                           Navigator.pushNamed(
                               context,
