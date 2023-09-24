@@ -18,8 +18,15 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("First App"),
+      appBar: AppBar(// theme code 
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0.0,  // for appbar shadow
+        iconTheme: IconThemeData(color: Colors.black),
+        title: const Text("First App",
+        textScaleFactor: 1.2,
+        style: TextStyle(color: Colors.black),
+      ),
       ),
       body: Center(
         child: Container(

@@ -7,7 +7,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final imageUrl=""  for network image
-    final imageUrl = "https://avatars.githubusercontent.com/u/93397573?v=4";
+    final imageUrl = "assets/img/Tony.jpg";
 
     return Drawer(
       child: Container(
@@ -25,7 +25,7 @@ class MyDrawer extends StatelessWidget {
                   accountName: Text("Stark"),
                   accountEmail: Text("StarkLovesToRock@pappu.com"),
                   currentAccountPicture: CircleAvatar(                          //Image.network(imageUrl)
-                    backgroundImage: NetworkImage(imageUrl),
+                    foregroundImage: AssetImage(imageUrl),
                     //backgroundColor: Colors.amber,                    //NetworkImage for network image
                 ),
                 ),

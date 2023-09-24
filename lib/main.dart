@@ -21,6 +21,12 @@ class MyApp extends StatelessWidget {
        brightness: Brightness.dark,//overrides all colors to dark mode
         primarySwatch: Colors.green,
         fontFamily: GoogleFonts.lato().fontFamily,
+        appBarTheme: AppBarTheme(
+          color: Colors.white,
+          elevation: 0.0,
+          iconTheme: IconThemeData(color: Colors.black),
+         // textTheme: Theme.of(context).textTheme,
+        )
         ),//Dark theme properties
         debugShowCheckedModeBanner: false,//to remove debug banner
         initialRoute: MyRoutes.homeRoute,//changes the default the route
