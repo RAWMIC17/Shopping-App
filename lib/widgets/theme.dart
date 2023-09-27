@@ -13,5 +13,5 @@ class MyTheme{
           iconTheme: IconThemeData(color: Colors.black),
           textTheme: Theme.of(context).textTheme,
         )
-  )
+  );
 }
