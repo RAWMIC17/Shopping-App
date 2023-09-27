@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/catalog.dart';
 
-import '../widgets/drawer.dart';//importing is necessary
+import '../widgets/drawer.dart';
+import '../widgets/item_widget.dart'; //importing is necessary
 
 class HomePage extends StatelessWidget {
   final int days = 30;
@@ -18,19 +20,23 @@ class HomePage extends StatelessWidget {
 //elements can be updated and changed
 
   @override
-  Widget build(BuildContext context) {  //context is element(stateless)
+  Widget build(BuildContext context) {
+    //context is element(stateless)
+    final dummyList = List.generate(15, (index) => CatalogModel.items[0]);   //creating 15 items from one item
     return Scaffold(
-      appBar: AppBar(// theme code 
+      appBar: AppBar(
+        // theme code
         centerTitle: true,
         backgroundColor: Colors.white,
-        elevation: 0.0,  // for appbar shadow
+        elevation: 0.0, // for appbar shadow
         iconTheme: IconThemeData(color: Colors.black),
-        title: const Text("First App",
-        textScaleFactor: 1.2,
-        style: TextStyle(color: Colors.black),
+        title: const Text(
+          "Shopping App",
+          textScaleFactor: 1.2,
+          style: TextStyle(color: Colors.black),
+        ),
       ),
-      ),
-      body: Container(     
+      /*body: Container(     
         //height: 400,         //dimensions of parent will be enforced on child
         //width: 400,
          constraints: BoxConstraints(//another way of assigning sizes
@@ -49,12 +55,17 @@ class HomePage extends StatelessWidget {
       /*body: Center(
         child: Container(
           child: Text(context.runtimeType.toString()), //to know about context
-        ),*/
-        /*body: Center(
-        child: Container(
-          child: Text("$name 's catalog app"), //to know about context
+        */),*/
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView.builder(
+          itemCount: dummyList.length,
+          itemBuilder: (context, index) {
+            return ItemWidget(
+              item: dummyList[index],
+            );
+          },
         ),
-      ),*/
       ),
       drawer: MyDrawer(),
     );
