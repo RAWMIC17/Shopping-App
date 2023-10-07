@@ -1,14 +1,47 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:flutter_application_1/models/catalog.dart';
 
 import '../widgets/drawer.dart';
 import '../widgets/item_widget.dart'; //importing is necessary
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final int days = 30;
+
   final String name = "Stark";
 
-  const HomePage({super.key});
+  @override
+  void initState() {
+    //calling data before the build
+    super.initState();
+    loadData(); //declaring load data method
+  }
+
+  loadData() async {
+    //creating method
+    await Future.delayed(Duration(seconds: 2));
+    final catalogJson = await rootBundle.loadString("assets/files/catalog.json"); //file may take time to load, so wait
+    //print(catalogJson);  //to check if the file loaded
+    final decodeData =jsonDecode(catalogJson); //decoding the string provide by json to object
+    //print(decodeData);
+    var productData = decodeData["products"];
+    CatalogModel.items = List.from(productData)
+        .map<Item>((item) => Item.fromMap(item))
+        .toList(); //returns list of items
+    setState(() {}); //calling build method
+    //print(productData);
+  }
 
   /*double a = 3.14;
     bool isMale = true;
@@ -16,13 +49,11 @@ class HomePage extends StatelessWidget {
     var b = "Tuesday";  //automatically understands that it's a string
     const pi = 3.14;    //value can't be changed
     */
-//Widgets are immutable , they are replaced with newer versions when an update is made
-//elements can be updated and changed
-
   @override
   Widget build(BuildContext context) {
     //context is element(stateless)
-    final dummyList = List.generate(15, (index) => CatalogModel.items[0]);   //creating 15 items from one item
+    //final dummyList = List.generate(
+    //  15, (index) => CatalogModel.items[0]); //creating 15 items from one item
     return Scaffold(
       appBar: AppBar(
         // theme code
@@ -58,16 +89,20 @@ class HomePage extends StatelessWidget {
         */),*/
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
-          itemCount: dummyList.length,
+        child: (CatalogModel.items.isNotEmpty)? ListView.builder(   //if
+          itemCount: CatalogModel.items.length, //dummyList.length,
           itemBuilder: (context, index) {
             return ItemWidget(
-              item: dummyList[index],
+              item: CatalogModel.items[index],
             );
           },
+        )
+        :Center(child: CircularProgressIndicator(),  //else
         ),
       ),
       drawer: MyDrawer(),
     );
   }
 }
+
+
