@@ -31,9 +31,11 @@ class _HomePageState extends State<HomePage> {
   loadData() async {
     //creating method
     await Future.delayed(Duration(seconds: 2));
-    final catalogJson = await rootBundle.loadString("assets/files/catalog.json"); //file may take time to load, so wait
+    final catalogJson = await rootBundle.loadString(
+        "assets/files/catalog.json"); //file may take time to load, so wait
     //print(catalogJson);  //to check if the file loaded
-    final decodeData =jsonDecode(catalogJson); //decoding the string provide by json to object
+    final decodeData =
+        jsonDecode(catalogJson); //decoding the string provide by json to object
     //print(decodeData);
     var productData = decodeData["products"];
     CatalogModel.items = List.from(productData)
@@ -89,20 +91,42 @@ class _HomePageState extends State<HomePage> {
         */),*/
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: (CatalogModel.items.isNotEmpty)? ListView.builder(   //if
-          itemCount: CatalogModel.items.length, //dummyList.length,
-          itemBuilder: (context, index) {
-            return ItemWidget(
-              item: CatalogModel.items[index],
-            );
-          },
-        )
-        :Center(child: CircularProgressIndicator(),  //else
-        ),
+        child: (CatalogModel.items.isNotEmpty)
+            ? GridView.builder(
+                //list view in day10
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,    //no. of items in 1 row
+                    mainAxisSpacing: 16,  //vertical spacing
+                    crossAxisSpacing: 16),//horizontal spacing
+                itemBuilder: (context, index) {
+                  final item = CatalogModel.items[index];
+                  return Card(elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                                clipBehavior: Clip.antiAlias,
+                    child: GridTile(header: Container(child: Text(item.name,style: TextStyle(color: Colors.white),),
+                                padding: EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Colors.deepPurple,
+                                ),
+                      ),
+                           child: Image.asset(item.image),
+                           footer: Container(child: Text(item.price.toString(),style: TextStyle(color: Colors.white),),
+                                padding: EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                ),
+                      ),
+                           )
+                          );
+                },
+                itemCount: CatalogModel.items.length,
+              )
+            : Center(
+                child: CircularProgressIndicator(), //else
+              ),
       ),
       drawer: MyDrawer(),
     );
   }
 }
-
-
