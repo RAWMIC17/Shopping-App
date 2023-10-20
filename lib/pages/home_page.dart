@@ -3,8 +3,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import 'package:flutter_application_1/models/catalog.dart';
+import 'package:flutter_application_1/widgets/theme.dart';
 
 import '../widgets/drawer.dart';
 import '../widgets/item_widget.dart'; //importing is necessary
@@ -57,7 +59,25 @@ class _HomePageState extends State<HomePage> {
     //final dummyList = List.generate(
     //  15, (index) => CatalogModel.items[0]); //creating 15 items from one item
     return Scaffold(
-      appBar: AppBar(
+      backgroundColor: MyTheme.creamcolor,
+      body: SafeArea(
+        child: Container(
+          padding: Vx.m20, //edgeinsects.all32
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start, //to keep text to left
+            children: [
+              CatalogHeader(), //linking catalog header widget
+              if (CatalogModel.items.isNotEmpty)
+                CatalogList().expand()
+              else
+                Center(
+                  child: CircularProgressIndicator(),
+                )
+            ],
+          ),
+        ),
+      ),
+      /*appBar: AppBar(
         // theme code
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -68,7 +88,7 @@ class _HomePageState extends State<HomePage> {
           textScaleFactor: 1.2,
           style: TextStyle(color: Colors.black),
         ),
-      ),
+      ),*/
       /*body: Container(     
         //height: 400,         //dimensions of parent will be enforced on child
         //width: 400,
@@ -89,8 +109,8 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           child: Text(context.runtimeType.toString()), //to know about context
         */),*/
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      /* body: Padding(
+        padding: const EdgeInsets.all(5.0),
         child: (CatalogModel.items.isNotEmpty)
             ? GridView.builder(
                 //list view in day10
@@ -126,7 +146,107 @@ class _HomePageState extends State<HomePage> {
                 child: CircularProgressIndicator(), //else
               ),
       ),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(),*/
     );
+  }
+}
+
+class CatalogHeader extends StatelessWidget {
+  const CatalogHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: Vx.m24, //edgeinsects.all32
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start, //to keep text to left
+        children: [
+          "Catalog App"
+              .text
+              .xl5
+              .bold
+              .color(MyTheme.darkbluishcolor)
+              .make(), //xl5 is size
+          //Text("Catalog App"), same thing as text make
+          "Trending Products".text.xl2.make(),
+        ],
+      ),
+    );
+  }
+}
+
+class CatalogList extends StatelessWidget {
+  const CatalogList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        shrinkWrap: true,
+        itemCount: CatalogModel.items.length,
+        itemBuilder: (context, index) {
+          final catalog = CatalogModel.items[index];
+          return CatalogItem(catalog: catalog);
+        });
+  }
+}
+
+class CatalogItem extends StatelessWidget {
+  final Item catalog;
+  const CatalogItem({
+    Key? key,
+    required this.catalog,
+  })  : assert(catalog != null),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return VxBox(
+        child: Row(
+      children: [
+        CatalogImage(image: catalog.image),
+        Expanded(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            catalog.name.text.lg.color(MyTheme.darkbluishcolor).bold.make(),
+            catalog.desc.text.textStyle(context.captionStyle).make().py4(),
+            10.heightBox, //sized box to have space between items in the box
+            ButtonBar(
+              alignment: MainAxisAlignment.spaceBetween,
+              buttonPadding: Vx.m0,
+              children: [
+                "\$${catalog.price}".text.bold.xl.make(),
+                ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(//to change button color
+                                MyTheme.darkbluishcolor),
+                        shape: MaterialStateProperty.all(
+                          StadiumBorder(),
+                        )),
+                    child: "Buy".text.lg.make())
+              ],
+            ).pOnly(right: 8.0) //description is captions
+          ],
+        ))
+      ],
+    )).white.roundedLg.square(150).make().py16(); //container
+  }
+}
+
+class CatalogImage extends StatelessWidget {
+  const CatalogImage({
+    Key? key,
+    required this.image,
+  }) : super(key: key);
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      image,
+    ).box.rounded.p8.color(MyTheme.creamcolor).make().p16().w40(context);
   }
 }

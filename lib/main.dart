@@ -14,13 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //home: Homepage(), //Removing the comment slasshes will result in errors
+      //home: Homepage(), //Removing the comment slashes will result in errors
       themeMode: ThemeMode.light, //Thememode dark or light
       theme: ThemeData(primarySwatch: Colors.deepPurple),//primaryswatch library contains colors
       darkTheme: ThemeData(
        brightness: Brightness.dark,//overrides all colors to dark mode
         primarySwatch: Colors.green,
-        fontFamily: GoogleFonts.lato().fontFamily,
+        fontFamily: GoogleFonts.poppins().fontFamily,
         appBarTheme: AppBarTheme(
           color: Colors.white,
           elevation: 0.0,
