@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/Login.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
+import 'package:flutter_application_1/pages/signup.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
         routes: { //"/" is show on screen first by default
           "/" : (context)=>  LoginPage(),//generates error, home also points to homepage, have to remove one
           MyRoutes.homeRoute:(context)=> HomePage(),//route to homepage
-          MyRoutes.loginRoute:(context)=> LoginPage()//route to loginpage
+          MyRoutes.loginRoute:(context)=> LoginPage(),
+          MyRoutes.signupRoute:(context)=> Signup()//route to loginpage
         },
     );
   }
