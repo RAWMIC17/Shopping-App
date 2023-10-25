@@ -29,6 +29,20 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  moveToSignUp(BuildContext context) async {
+  setState(() {
+    changeButton = true;
+  });
+
+  await Future.delayed(Duration(seconds: 1)); // Making the user wait for 1 second
+  await Navigator.pushNamed(context, MyRoutes.signupRoute);
+
+  setState(() {
+    changeButton = false; // To come back and reset the button
+  });
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -93,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
                       SizedBox(
-                        //box for button
+                        //box for button gap
                         height: 20.0,
                       ),
                       Material(
@@ -121,6 +135,43 @@ class _LoginPageState extends State<LoginPage> {
                                 : //done icon
                                 Text(
                                     "Login",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        //box for button gap
+                        height: 20.0,
+                      ),
+                      Material(
+                        //used to give ripple, tap effect, ancestor widget
+                        color:
+                            Colors.deepPurple, //no decoration in child widget
+                        borderRadius:
+                            BorderRadius.circular(changeButton ? 50 : 8),
+                        child: InkWell(
+                          onTap: () => moveToSignUp(context), //using the function made above
+                          child: AnimatedContainer(
+                            duration: Duration(
+                              seconds: 1, //wait time 1 seconds
+                            ),
+                            width: changeButton ? 50 : 150,
+                            height: 50,
+                            //color: Colors.deepPurple,//can be used here also and also in the decoration but not in both 'causes error'
+                            alignment: Alignment.center,
+                            child: changeButton
+                                ? Icon(
+                                    Icons.done,
+                                    color: Colors.white,
+                                  )
+                                : //done icon
+                                Text(
+                                    "Signup",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
