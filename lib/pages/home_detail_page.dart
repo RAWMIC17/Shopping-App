@@ -38,8 +38,8 @@ class HomeDetailPage extends StatelessWidget {
                   shape: MaterialStateProperty.all(
                     StadiumBorder(),
                   )),
-              child: "Buy".text.xl.make(),
-            ).wh(100, 50)
+              child: "Add to Cart".text.xl.make(),
+            ).wh(130, 50)
           ],
         ).px20().py64(),
       ), //description is captions
@@ -50,7 +50,8 @@ class HomeDetailPage extends StatelessWidget {
             Hero(
                     tag: catalog.id.toString(), //for animation
                     child: Image.asset(catalog.image))
-                .h32(context),
+                .h32(context)
+                .py8(),
             Expanded(
                 child: VxArc(
               height: 30.0,
@@ -70,8 +71,14 @@ class HomeDetailPage extends StatelessWidget {
                         .make()
                         .py4(),
                     10.heightBox,
+                    "Ex dolor nulla qui enim.Ex dolor nulla qui enim.Ex dolor nulla qui enim. Ex dolor nulla qui enim.Ex dolor nulla qui enim.Ex dolor nulla qui enim. Ex dolor nulla qui enim.Ex dolor nulla qui enim.Ex dolor nulla qui enim. Ex dolor nulla qui enim.Ex dolor nulla qui enim Ex dolor nulla qui enim.Ex dolor nulla qui enim"
+                        .text
+                        .textStyle(context.captionStyle)
+                        .make()
+                        .px32()
+                        .py16(),
                   ],
-                ).py64(),
+                ).py32(),
               ),
             ))
           ],
