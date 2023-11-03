@@ -1,10 +1,12 @@
-# flutter_application_1
+# Shopping App
 
-A new Flutter project.
+A new Flutter project consisting of interactive login UI, smooth page transitions, and easy-to-understand/operate UI.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project consists of various segments and resources merged like texts, images, icons, etc. For fluent and beginner's sake, a dedicated floating navigation panel has been provided. Nonvibrant colours are used for relaxing and soothing eyes.
+
+## The release will be soon provided!!!
 
 A few resources to get you started if this is your first Flutter project:
 
