@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:flutter_application_1/models/catalog.dart';
@@ -59,7 +61,12 @@ class _HomePageState extends State<HomePage> {
     //final dummyList = List.generate(
     //  15, (index) => CatalogModel.items[0]); //creating 15 items from one item
     return Scaffold(
+      //appBar: AppBar(),
       backgroundColor: MyTheme.creamcolor,
+      floatingActionButton: FloatingActionButton(//for floating stationary button
+        onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+        backgroundColor: MyTheme.darkbluishcolor,
+        child:Icon(CupertinoIcons.cart),),
       body: SafeArea(
         child: Container(
           padding: Vx.m20, //edgeinsects.all32
