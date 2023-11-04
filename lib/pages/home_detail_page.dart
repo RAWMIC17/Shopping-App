@@ -18,7 +18,7 @@ class HomeDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: context.canvasColor, //for background
-        foregroundColor: Vx.white,
+        //foregroundColor: Vx.white,
       ), //for back button
       backgroundColor: context.canvasColor,
       bottomNavigationBar: Container(

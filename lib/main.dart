@@ -5,7 +5,6 @@ import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/pages/signup.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 import 'package:flutter_application_1/widgets/theme.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
           ///primarySwatch: Colors.green,
            //Dark theme properties
       debugShowCheckedModeBanner: false, //to remove debug banner
-      initialRoute: MyRoutes.loginRoute, //changes the default the route
+      initialRoute: MyRoutes.homeRoute, //changes the default the route
       routes: {
         //"/" is show on screen first by default
         "/": (context) =>
