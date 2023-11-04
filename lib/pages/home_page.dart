@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_application_1/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:flutter_application_1/models/catalog.dart';
-import 'package:flutter_application_1/widgets/theme.dart';
 
 import '../widgets/home_widgets/catalog_header.dart';
 import '../widgets/home_widgets/catalog_list.dart'; //importing is necessary
@@ -62,11 +60,18 @@ class _HomePageState extends State<HomePage> {
     //  15, (index) => CatalogModel.items[0]); //creating 15 items from one item
     return Scaffold(
       //appBar: AppBar(),
-      backgroundColor: MyTheme.creamcolor,
-      floatingActionButton: FloatingActionButton(//for floating stationary button
+      backgroundColor: context.theme
+          .canvasColor, //context.canvasColor,//Theme.of(context).canvasColor,   //MyTheme.creamcolor,
+      floatingActionButton: FloatingActionButton(
+        //for floating stationary button
         onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
-        backgroundColor: MyTheme.darkbluishcolor,
-        child:Icon(CupertinoIcons.cart),),
+        backgroundColor: context.theme.highlightColor,
+        //backgroundColor: MyTheme.lightBluishcolor,//MyTheme.darkbluishcolor,
+        child: Icon(
+          CupertinoIcons.cart,
+          color: Colors.white,
+        ),
+      ),
       body: SafeArea(
         child: Container(
           padding: Vx.m20, //edgeinsects.all32
@@ -77,7 +82,9 @@ class _HomePageState extends State<HomePage> {
               if (CatalogModel.items.isNotEmpty)
                 CatalogList().py16().expand()
               else
-                 CircularProgressIndicator().centered().expand(),//center and expand for indicator to be in center
+                CircularProgressIndicator()
+                    .centered()
+                    .expand(), //center and expand for indicator to be in center
             ],
           ),
         ),

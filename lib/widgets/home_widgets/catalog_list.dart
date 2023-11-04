@@ -3,7 +3,6 @@ import 'package:flutter_application_1/pages/home_detail_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../models/catalog.dart';
-import '../theme.dart';
 import 'catalog_image.dart';
 
 class CatalogList extends StatelessWidget {
@@ -50,7 +49,7 @@ class CatalogItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            catalog.name.text.lg.color(MyTheme.darkbluishcolor).bold.make(),
+            catalog.name.text.lg.color(context.theme.colorScheme.secondary).bold.make(),
             catalog.desc.text.textStyle(context.captionStyle).make().py4(),
             10.heightBox, //sized box to have space between items in the box
             ButtonBar(
@@ -63,7 +62,7 @@ class CatalogItem extends StatelessWidget {
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(//to change button color
-                                MyTheme.darkbluishcolor),
+                                context.theme.highlightColor),
                         shape: MaterialStateProperty.all(
                           StadiumBorder(),
                         )),
@@ -73,6 +72,6 @@ class CatalogItem extends StatelessWidget {
           ],
         ))
       ],
-    )).white.roundedLg.square(150).make().py16(); //container
+    )).color(context.cardColor).roundedLg.square(150).make().py16(); //container
   }
 }

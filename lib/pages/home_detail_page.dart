@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/widgets/theme.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:flutter_application_1/models/catalog.dart';
@@ -18,12 +17,12 @@ class HomeDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white, //for background
-        foregroundColor: Colors.black,
+        backgroundColor: context.canvasColor, //for background
+        foregroundColor: Vx.white,
       ), //for back button
-      backgroundColor: MyTheme.creamcolor,
+      backgroundColor: context.canvasColor,
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.theme.cardColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: Vx.m0,
@@ -34,14 +33,14 @@ class HomeDetailPage extends StatelessWidget {
               style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(//to change button color
-                          MyTheme.darkbluishcolor),
+                          context.theme.highlightColor),
                   shape: MaterialStateProperty.all(
                     StadiumBorder(),
                   )),
               child: "Add to Cart".text.xl.make(),
             ).wh(130, 50)
           ],
-        ).px20().py64(),
+        ).px20().py32(),
       ), //description is captions
       body: SafeArea(
         bottom: false, //to remove safearea from bottom
@@ -58,12 +57,12 @@ class HomeDetailPage extends StatelessWidget {
               arcType: VxArcType.convey, //fro arc shape
               edge: VxEdge.top, //side where shape needed
               child: Container(
-                color: Colors.white,
+                color: context.cardColor,
                 width: context.screenWidth, //to keep column wide as per screen
                 child: Column(
                   children: [
                     catalog.name.text.xl4
-                        .color(MyTheme.darkbluishcolor)
+                        .color(context.theme.colorScheme.secondary)
                         .bold
                         .make(),
                     catalog.desc.text.xl
