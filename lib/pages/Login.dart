@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/utils/routes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -47,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Material(
         //replace material with scaffold for app bar
-        color: Colors.white,
+        color: context.canvasColor,
         child: SingleChildScrollView(
           //gives scroll bar for smaller devices(bottom overflow error avoided)
           child: Form(
@@ -113,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                       Material(
                         //used to give ripple, tap effect, ancestor widget
                         color:
-                            Colors.deepPurple, //no decoration in child widget
+                            context.theme.highlightColor, //no decoration in child widget
                         borderRadius:
                             BorderRadius.circular(changeButton ? 50 : 8),
                         child: InkWell(
@@ -151,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                       Material(
                         //used to give ripple, tap effect, ancestor widget
                         color:
-                            Colors.deepPurple, //no decoration in child widget
+                            context.theme.highlightColor, //no decoration in child widget
                         borderRadius:
                             BorderRadius.circular(changeButton ? 50 : 8),
                         child: InkWell(

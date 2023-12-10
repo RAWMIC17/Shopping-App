@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../theme.dart';
 
 class CatalogHeader extends StatelessWidget {
   const CatalogHeader({super.key});
@@ -17,7 +16,7 @@ class CatalogHeader extends StatelessWidget {
               .text
               .xl5
               .bold
-              .color(MyTheme.darkbluishcolor)
+              .color(context.theme.colorScheme.secondary)
               .make(), //xl5 is size
           //Text("Catalog App"), same thing as text make
           "Trending Products".text.xl2.make(),
