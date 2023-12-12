@@ -1,9 +1,9 @@
 import 'package:flutter_application_1/models/catalog.dart';
 
 class CartModel{
-  static final cartModel = CartModel._internal();   //make class singleton
-  CartModel._internal();
-  factory CartModel() => cartModel;
+  //static final cartModel = CartModel._internal();   //make class singleton
+  //CartModel._internal();
+  //factory CartModel() => cartModel;
 
   //catalog field
   late CatalogModel _catalog; // its private due to underscore, we need a getter
