@@ -16,7 +16,7 @@ class AddtoCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     VxState.watch(context,
-        on: [AddMutation]); //alternative to set state with mutations
+        on: [AddMutation,RemoveMutation]); //alternative to set state with mutations
     final CartModel _cart = (VxState.store as MyStore).cart;
     //final CatalogModel _catalog = (VxState.store as MyStore).catalog;
 
@@ -29,7 +29,7 @@ class AddtoCart extends StatelessWidget {
 
           // _cart.add(catalog);
           //_cart.catalog = _catalog;
-          AddMutation(catalog as int);
+          AddMutation(catalog as Item);
           //setting catalog
           //setState(() {});
         }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/cart.dart';
+import 'package:flutter_application_1/models/catalog.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../core/store.dart';
@@ -33,6 +34,7 @@ class _CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("Rebuild Happened");
     //final _cart = CartModel();
     final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
@@ -41,11 +43,18 @@ class _CartTotal extends StatelessWidget {
           mainAxisAlignment:
               MainAxisAlignment.spaceAround, //better than spacebetween
           children: [
-            "\$${_cart.totalPrice}"
-                .text
-                .xl4
-                .color(context.theme.colorScheme.secondary)
-                .make(),
+            VxBuilder(
+              //notifier,consumer,builder
+              //notifications: {},
+              mutations: {RemoveMutation},
+              builder: (context,status,_) {
+                return "\$${_cart.totalPrice}"
+                    .text
+                    .xl4
+                    .color(context.theme.colorScheme.secondary)
+                    .make();
+              },
+            ),
             30.widthBox,
             ElevatedButton(
                     onPressed: () {
@@ -66,35 +75,33 @@ class _CartTotal extends StatelessWidget {
 
 class _CartList extends StatelessWidget {
   //will be having a remove item button
- _CartList({super.key});
+  _CartList({super.key});
 
   //@override
   //State<_CartList> createState() => _CartListState();
-
 
 //class _CartListState extends State<_CartList> {
   //final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [RemoveMutation]); //whole widget tree is rebuilt
     final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items.isEmpty
         ? "Nothing to show".text.xl3.makeCentered()
         : ListView.builder(
-            itemCount: _cart.items?.length,
+            itemCount: _cart.items.length,
             itemBuilder: (context, index) => ListTile(
-              leading: Icon(Icons.done),
-              trailing: IconButton(
-                icon: Icon(
-                  Icons.remove_circle_outline_outlined,
-                  color: Colors.red,
-                ),
-                onPressed: () {
-                  _cart.remove(_cart.items[index]);
-                  //setState(() {})
-                },
-              ),
+                  leading: Icon(Icons.done),
+                  trailing: IconButton(
+                    icon: Icon(
+                      Icons.remove_circle_outline_outlined,
+                      color: Colors.red,
+                    ),
+                    onPressed: () => RemoveMutation(_cart.items[index]),
+                    //_cart.remove(_cart.items[index]);
+                    //setState(() {})
+                  ),
                   title: _cart.items[index].name.text.make(),
-                )
-                );
-                }
+                ));
+  }
 }
