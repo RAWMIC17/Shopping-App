@@ -8,9 +8,13 @@ import 'package:flutter_application_1/utils/routes.dart';
 import 'package:flutter_application_1/widgets/theme.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'models/cart.dart';
+import 'models/catalog.dart';
+
 void main() {
   runApp(VxState(
-    store: MyStore(),
+    store: MyStore(CatalogModel(),
+      CartModel(),),
     child: const MyApp()));
 }
 
